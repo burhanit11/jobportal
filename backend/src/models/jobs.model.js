@@ -16,6 +16,9 @@ const jobSchema = new Schema(
       type: Number,
       required: true,
     },
+    exprince: {
+      type: Number,
+    },
     location: {
       type: String,
       required: true,

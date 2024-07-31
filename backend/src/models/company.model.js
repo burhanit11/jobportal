@@ -2,27 +2,25 @@ import mongoose, { Schema } from "mongoose";
 
 const companySchema = new Schema(
   {
-    jobType: {
+    name: {
       type: String,
       required: true,
     },
-    position: {
-      type: Number,
-      required: true,
+    description: {
+      type: String,
     },
-    company: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Company",
-      required: true,
+    website: {
+      type: String,
     },
-    created_by: {
+    location: {
+      type: String,
+    },
+    logo: {
+      type: String,
+    },
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
-    },
-    application: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Application",
       required: true,
     },
   },

@@ -9,9 +9,11 @@ const jobSchema = new Schema(
     description: {
       type: String,
     },
-    recruiter: {
-      type: String,
-    },
+    requirements: [
+      {
+        type: String,
+      },
+    ],
     salary: {
       type: Number,
       required: true,
@@ -44,7 +46,6 @@ const jobSchema = new Schema(
     application: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Application",
-      required: true,
     },
   },
   { timestamps: true }

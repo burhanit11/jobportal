@@ -40,7 +40,7 @@ const singup = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, role, password } = req.body;
-    if ([, password, email, role].some((filed) => filed.trim() === "")) {
+    if ([password, email, role].some((filed) => filed.trim() === "")) {
       return res
         .status(400)
         .json({ message: "All fileds are required", success: false });

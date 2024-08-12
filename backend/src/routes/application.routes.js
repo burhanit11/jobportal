@@ -13,6 +13,6 @@ const router = express.Router();
 router.route("/applyJob/:id").get(verifyJWT, applyJob);
 router.route("/getAppliedJob").get(verifyJWT, getAppliedJob);
 router.route("/:id/getApplicats").get(verifyJWT, getApplicats);
-router.route("/updateStatus/:id").post(verifyJWT, updateStatus);
+router.route("/updateStatus/:id").put(verifyJWT, updateStatus);
 
 export default router;

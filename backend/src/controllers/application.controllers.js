@@ -6,6 +6,7 @@ const applyJob = async (req, res) => {
     const userId = req.user._id;
 
     const jobId = req.params.id;
+    console.log(jobId, "??????????");
     if (!jobId) {
       return res
         .status(400)
@@ -14,7 +15,7 @@ const applyJob = async (req, res) => {
     //   check the user already applied for this job
     const existsApplication = await Application.findOne({
       job: jobId,
-      applicat: userId,
+      applicant: userId,
     });
     if (existsApplication) {
       return res.status(400).json({ message: "Applied", success: false });
@@ -29,21 +30,21 @@ const applyJob = async (req, res) => {
 
     const newApplication = await Application.create({
       job: jobId,
-      applicat: userId,
+      applicant: userId,
     });
-    job.applicat.push(newApplication);
-    await job.save();
+    job.applicant.push(newApplication);
+    // await job.save();
 
     return res.status(201).json({ message: "Job Applied Successfully." });
   } catch (error) {
-    console.log(error);
+    console.log(error, "????????????");
   }
 };
 
 const getAppliedJob = async (req, res) => {
   try {
     const userId = req.user._id;
-    const application = await Application.find({ applicat: userId })
+    const application = await Application.find({ applicant: userId })
       .sort({
         createdAt: -1,
       })
@@ -71,11 +72,11 @@ const getAppliedJob = async (req, res) => {
 const getApplicats = async (req, res) => {
   try {
     const jobId = req.params.id;
-    const job = await job.findById(jobId).populate({
-      path: "applications",
+    const job = await Job.findById(jobId).populate({
+      path: "application",
       options: { sort: { createdAt: -1 } },
       populate: {
-        path: "applicat",
+        path: "applicant",
       },
     });
     if (!job) {
@@ -83,7 +84,7 @@ const getApplicats = async (req, res) => {
         .status(400)
         .json({ message: "No Application", success: false });
     }
-    res.status(200).json({ message: "Applicats", job, success: true });
+    res.status(200).json({ message: "applicant", job, success: true });
   } catch (error) {
     console.log(error);
   }
@@ -107,9 +108,10 @@ const updateStatus = async (req, res) => {
     }
     application.status = status.toLowerCase();
 
-    await save();
+    await application.save();
     res.status(200).json({
       message: "Application status update successfully",
+      application,
       success: false,
     });
   } catch (error) {

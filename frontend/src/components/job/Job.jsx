@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Bookmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import logo from "../../assets/logo.webp";
 
 const Job = () => {
   return (
@@ -18,9 +19,10 @@ const Job = () => {
           <Avatar>
             <AvatarImage
               className="h-10 w-10 rounded-full"
-              src="https://github.com/shadcn.png"
+              src={logo}
               alt="@shadcn"
             />
+            {/* <img src={logo} alt="" /> */}
           </Avatar>
         </Button>
         <div>

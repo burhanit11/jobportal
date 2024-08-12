@@ -11,9 +11,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const use = useSelector((state) => state.user.users);
-  console.log(use, "user");
-  const user = false;
+  const user = useSelector((state) => state.user.users);
+  console.log(user, "user");
+  // const user = false;
 
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Header = () => {
             <Link to={"/jobs"}>Jobs</Link>
             <Link to={"/browse"}>Browse</Link>
           </ul>
-          {user ? (
+          {!user ? (
             <Popover>
               <PopoverTrigger asChild>
                 <Avatar className=" cursor-pointer">

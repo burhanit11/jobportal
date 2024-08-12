@@ -3,12 +3,11 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { useState } from "react";
 import axios from "axios";
 import { USER_API_END_POINT } from "../../utils/constant";
-import { useToast } from "@/components/ui/use-toast";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/slices/userSlices/userSlices";
 
@@ -19,8 +18,8 @@ const Login = () => {
     role: "",
   });
 
+  const navigation = useNavigate();
   const dispatch = useDispatch();
-  const { toast } = useToast();
 
   const handelFormValue = async (e) => {
     // e.preventDefalut();
@@ -36,14 +35,14 @@ const Login = () => {
           "Content-Type": "application/json",
         },
       });
-      console.log(toast, "??");
       console.log(res);
-      dispatch(addUser(res.data?.token));
+      // dispatch(addUser(res.data));
+      navigation("/");
     } catch (error) {
-      toast({
-        title: error,
-        // description: "Friday, February 10, 2023 at 5:57 PM",
-      });
+      // toast({
+      //   title: error.message || "Login failed",
+      //   description: "Please check your credentials and try again.",
+      // });
       console.log(error);
     }
   };

@@ -36,7 +36,7 @@ const routes = createBrowserRouter([
 
 function App() {
   return (
-    <div>
+    <div className="mx-5">
       {/* <Header /> */}
       <RouterProvider router={routes} />
       {/* <Footer /> */}

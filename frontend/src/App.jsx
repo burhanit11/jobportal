@@ -19,9 +19,13 @@ const routes = createBrowserRouter([
   {
     path: "/jobs",
     element: <Jobs />,
+    // children: {
+    //   path: "/jobDescription/:id",
+    //   element: <JobDescription />,
+    // },
   },
   {
-    path: "/jobDescription/:id",
+    path: "jobDescription/:id",
     element: <JobDescription />,
   },
   {

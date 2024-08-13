@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const user = useSelector((state) => state.user.users);
+  const user = useSelector((state) => state.user.user);
   console.log(user, "user");
   // const user = false;
 
@@ -31,7 +31,7 @@ const Header = () => {
             <Link to={"/jobs"}>Jobs</Link>
             <Link to={"/browse"}>Browse</Link>
           </ul>
-          {!user ? (
+          {user ? (
             <Popover>
               <PopoverTrigger asChild>
                 <Avatar className=" cursor-pointer">
@@ -63,7 +63,7 @@ const Header = () => {
                   <div className="flex  justify-center items-center">
                     <FaRegUser size={20} />
                     <Button className="border-none " variant="link">
-                      View Profile
+                      <Link to={"/profile"}>View Profile</Link>
                     </Button>
                   </div>
                   <div className="flex justify-center items-center">

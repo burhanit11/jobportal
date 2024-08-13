@@ -7,6 +7,8 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/signUp/SignUp";
 import Jobs from "./pages/jobs/Jobs";
 import Browse from "./pages/browse/Browse";
+import Profile from "./pages/profile/Profile";
+import JobDescription from "./components/jobDescription/JobDescription";
 // import { routes } from "./routes/routes.js";
 const routes = createBrowserRouter([
   {
@@ -17,6 +19,10 @@ const routes = createBrowserRouter([
   {
     path: "/jobs",
     element: <Jobs />,
+  },
+  {
+    path: "/jobDescription/:id",
+    element: <JobDescription />,
   },
   {
     path: "/browse",
@@ -31,6 +37,11 @@ const routes = createBrowserRouter([
     // name: "Sign Up",
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    // name: "Sign Up",
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 

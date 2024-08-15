@@ -12,8 +12,6 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const user = useSelector((state) => state.user.user);
-  console.log(user, "user");
-  // const user = false;
 
   const navigate = useNavigate();
 
@@ -37,7 +35,7 @@ const Header = () => {
                 <Avatar className=" cursor-pointer">
                   <AvatarImage
                     className="h-10 w-10 rounded-full"
-                    src="https://github.com/shadcn.png"
+                    src={user?.profile?.url || "https://github.com/shadcn.png"}
                     alt="@shadcn"
                   />
                   {/* <h1>Porfile</h1> */}
@@ -48,15 +46,17 @@ const Header = () => {
                   <Avatar className=" cursor-pointer">
                     <AvatarImage
                       className="h-10 w-10 rounded-full"
-                      src="https://github.com/shadcn.png"
+                      src={
+                        user?.profile?.url || "https://github.com/shadcn.png"
+                      }
                       alt="@shadcn"
                     />
                   </Avatar>
                   <div className="mx-2">
                     <span className="text-lg font-medium">
-                      Burhan Mern Stack
+                      {user?.fullName}
                     </span>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>{user.bio || "consecte elit. Alias sunt."}</p>
                   </div>
                 </div>
                 <div className="flex flex-col mt-2 justify-center items-start">

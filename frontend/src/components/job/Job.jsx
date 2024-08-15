@@ -58,7 +58,7 @@ const Job = () => {
           className="cursor-pointer"
           onClick={() => navigation(`/jobDescription/${jobId}`)}
         >
-          <Link to={`/jobDescription/${jobId}`}>Details</Link>
+          <Link to={`/jobs/jobDescription/${jobId}`}>Details</Link>
         </Button>
         <Button className="cursor-pointer">Save for later</Button>
       </div>

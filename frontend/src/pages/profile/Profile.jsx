@@ -5,6 +5,9 @@ import { Contact, Mail, Pen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import AppliedJobTable from "../../components/appliedJobTable/AppliedJobTable";
+import { useState } from "react";
+import UpdateProfileDialog from "../../components/UpdateProfileDialog/UpdateProfileDialog";
+import { useSelector } from "react-redux";
 // import Footer from "../../components/footer/Footer";
 
 const Skills = ["HTML", "css3", "JavaScript", "ReactJs", "NextJs"];
@@ -12,6 +15,11 @@ const Skills = ["HTML", "css3", "JavaScript", "ReactJs", "NextJs"];
 const isResume = true;
 
 const Profile = () => {
+  const [open, setOpen] = useState(false);
+
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
+
   return (
     <div>
       <Header />
@@ -21,30 +29,34 @@ const Profile = () => {
             <Avatar className="h-24 w-24 cursor-pointer">
               <AvatarImage
                 className="h-24 w-24 rounded-full"
-                src="https://github.com/shadcn.png"
+                src={user?.profile?.url || "https://github.com/shadcn.png"}
                 alt="@shadcn"
               />
             </Avatar>
             <div>
-              <h1 className="font-bold text-lg ">Full Name</h1>
+              <h1 className="font-bold text-lg ">{user?.fullName}</h1>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias,
-                sunt.
+                {user.bio ||
+                  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias sunt."}
               </p>
             </div>
           </div>
-          <Button className="text-right " variant="outline">
+          <Button
+            className="text-right "
+            onClick={() => setOpen(true)}
+            variant="outline"
+          >
             <Pen />
           </Button>
         </div>
         <div className="my-5">
           <div className="flex items-center gap-3 my-2">
             <Mail />
-            <span>burhan@gmail.com</span>
+            <span>{user?.email}</span>
           </div>
           <div className="flex items-center gap-3 my-2">
             <Contact />
-            <span>+92 306 8866 333</span>
+            <span>{user.phoneNumber}</span>
           </div>
         </div>
         <div>
@@ -85,6 +97,7 @@ const Profile = () => {
         </div>
       </div>
       {/* <Footer /> */}
+      <UpdateProfileDialog open={open} setOpen={setOpen} />
     </div>
   );
 };

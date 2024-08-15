@@ -1,6 +1,5 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import img from "../../assets/logo.webp";
 
 const JobDescription = () => {
   const isApplied = false;
@@ -8,7 +7,7 @@ const JobDescription = () => {
     <div className="max-w-7xl mx-auto my-10">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold">Title </h1>
+          <h1 className="text-xl font-bold">Frontend developer </h1>
           <div className="flex items-center gap-2 mt-4">
             <Badge variant="ghost" className="text-blue-600 font-bold">
               12 Positions
@@ -49,24 +48,19 @@ const JobDescription = () => {
           </span>
         </h1>
         <h1 className="font-bold my-1">
-          Experience:{" "}
+          Experience:
           <span className="pl-4 font-normal text-gray-800">2 yr</span>
         </h1>
         <h1 className="font-bold my-1">
           Salary: <span className="pl-4 font-normal text-gray-800">60k</span>
         </h1>
         <h1 className="font-bold my-1">
-          Total:
-          <span className="pl-4 font-normal text-gray-800">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Consequuntur, maxime.
-          </span>
+          Total Applications:
+          <span className="pl-4 font-normal text-gray-800">4</span>
         </h1>
         <h1 className="font-bold my-1">
-          Role:{" "}
-          <span className="pl-4 font-normal text-gray-800">
-            Frontend Developer
-          </span>
+          Posted Date
+          <span className="pl-4 font-normal text-gray-800">17-08-2024</span>
         </h1>
       </div>
     </div>

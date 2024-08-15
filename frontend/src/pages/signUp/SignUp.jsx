@@ -4,7 +4,7 @@ import Footer from "../../components/footer/Footer";
 import { Label } from "@/components/ui/label";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { USER_API_END_POINT } from "../../utils/constant";
@@ -22,7 +22,6 @@ const SignUp = () => {
     file: null,
     url: "",
   });
-
   const { toast } = useToast();
   const handelAvatar = (e) => {
     setAvatar({
@@ -31,6 +30,8 @@ const SignUp = () => {
     });
   };
 
+  const navigate = useNavigate();
+
   const handelFormValue = (e) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
@@ -38,28 +39,32 @@ const SignUp = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    console.log(input);
+    const userData = {
+      fullName: input.fullName,
+      email: input.email,
+      phoneNumber: input.phoneNumber,
+      role: input.role,
+      password: input.password,
+      picture: avatar.url,
+    };
     try {
+      console.log(userData, "userData");
+      console.log("1");
       const res = await axios.post(
         `${USER_API_END_POINT}/users/singup`,
-        input,
-        // {
-        //   fullName: input.fullName,
-        //   email: input.email,
-        //   password: input.password,
-        //   phoneNumber: input.password,
-        //   role: input.role,
-        // },
+        userData,
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
+      console.log("2");
       toast({
         title: res.data?.message,
-        // description: "Friday, February 10, 2023 at 5:57 PM",
+        description: "Friday, February 10, 2023 at 5:57 PM",
       });
+      navigate("/");
     } catch (error) {
       toast({
         title: error,
@@ -142,7 +147,7 @@ const SignUp = () => {
                   value="recuiter"
                   className="cursor-pointer"
                   onChange={handelFormValue}
-                  checked={input.role === "student"}
+                  checked={input.role === "recuiter"}
                 />
                 <Label htmlFor="option-two">Recuiter</Label>
               </div>

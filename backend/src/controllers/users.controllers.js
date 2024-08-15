@@ -14,6 +14,7 @@ const singup = async (req, res) => {
         .status(400)
         .json({ message: "All fileds are required", success: false });
     }
+    // console.log(u);
 
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -21,6 +22,12 @@ const singup = async (req, res) => {
         .status(400)
         .json({ message: "User Already Exists.", success: false });
     }
+    // = req.file?.path
+    const pictureLocalPath = req.file?.path;
+    console.log(pictureLocalPath, "pictureLocalPath");
+
+    const picture = await uploadOnCloudinary(pictureLocalPath);
+    console.log(picture.url, "url");
 
     const user = await User.create({
       fullName,
@@ -28,6 +35,7 @@ const singup = async (req, res) => {
       phoneNumber,
       email,
       role,
+      picture: picture?.url,
     });
 
     res.status(200).json({ message: "singup success.", user, success: true });
@@ -141,6 +149,7 @@ const update = async (req, res) => {
     }
 
     const picture = await uploadOnCloudinary(picLocalPath);
+    console.log(picture, "???");
 
     user.fullName = fullName;
     user.phoneNumber = phoneNumber;

@@ -36,11 +36,6 @@ const Login = () => {
         },
       });
       console.log(res);
-<<<<<<< HEAD
-      dispatch(addUser(res.data));
-=======
-      dispatch(addUser(res.data?.user));
->>>>>>> ff10fa078c3b2e9cdbb2c330194ea0911b41bdaa
       navigation("/");
     } catch (error) {
       // toast({

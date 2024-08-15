@@ -3,8 +3,12 @@ import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Bookmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import logo from "../../assets/logo.webp";
+import { Link, useNavigation } from "react-router-dom";
 
 const Job = () => {
+  const navigation = useNavigation();
+  const jobId = "xcbmbkcekldf";
+
   return (
     <div className="p-5 rounded-md shadow-xl bg-white border border-gray-100">
       <div className="flex items-center justify-between ">
@@ -49,8 +53,14 @@ const Job = () => {
         </Badge>
       </div>
       <div className="flex items-center gap-4 mt-4">
-        <Badge variant="outine">Details</Badge>
-        <Badge>Save for later</Badge>
+        <Button
+          variant="outline"
+          className="cursor-pointer"
+          onClick={() => navigation(`/jobDescription/${jobId}`)}
+        >
+          <Link to={`/jobDescription/${jobId}`}>Details</Link>
+        </Button>
+        <Button className="cursor-pointer">Save for later</Button>
       </div>
     </div>
   );

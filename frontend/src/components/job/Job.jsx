@@ -3,7 +3,7 @@ import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Bookmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import logo from "../../assets/logo.webp";
-import { useNavigation } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 
 const Job = () => {
   const navigation = useNavigation();
@@ -58,7 +58,7 @@ const Job = () => {
           className="cursor-pointer"
           onClick={() => navigation(`/jobDescription/${jobId}`)}
         >
-          Details
+          <Link to={`/jobDescription/${jobId}`}>Details</Link>
         </Button>
         <Button className="cursor-pointer">Save for later</Button>
       </div>

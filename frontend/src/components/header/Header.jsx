@@ -9,11 +9,35 @@ import { LuLogOut } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { USER_API_END_POINT } from "../../utils/constant";
 
 const Header = () => {
   const user = useSelector((state) => state.user.user);
 
   const navigate = useNavigate();
+
+  const logout = async () => {
+    console.log("1");
+    try {
+      console.log("2");
+      const res = await axios.post(
+        `${USER_API_END_POINT}/users/logout`,
+        {
+          withcredentials: true,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(res.data.message, "Logout");
+    } catch (error) {
+      console.log("3");
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -35,7 +59,9 @@ const Header = () => {
                 <Avatar className=" cursor-pointer">
                   <AvatarImage
                     className="h-10 w-10 rounded-full"
-                    src={user?.profile?.url || "https://github.com/shadcn.png"}
+                    src={
+                      user?.profile?.picture || "https://github.com/shadcn.png"
+                    }
                     alt="@shadcn"
                   />
                   {/* <h1>Porfile</h1> */}
@@ -47,7 +73,8 @@ const Header = () => {
                     <AvatarImage
                       className="h-10 w-10 rounded-full"
                       src={
-                        user?.profile?.url || "https://github.com/shadcn.png"
+                        user?.profile?.picture ||
+                        "https://github.com/shadcn.png"
                       }
                       alt="@shadcn"
                     />
@@ -69,7 +96,11 @@ const Header = () => {
                   <div className="flex justify-center items-center">
                     <LuLogOut size={20} />
 
-                    <Button className="border-none " variant="link">
+                    <Button
+                      onClick={logout}
+                      className="border-none "
+                      variant="link"
+                    >
                       Logout
                     </Button>
                   </div>

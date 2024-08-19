@@ -35,7 +35,9 @@ const singup = async (req, res) => {
       phoneNumber,
       email,
       role,
-      picture: picture?.url,
+      profile: {
+        picture: picture.url,
+      },
     });
 
     res.status(200).json({ message: "singup success.", user, success: true });
